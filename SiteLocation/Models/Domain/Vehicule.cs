@@ -13,6 +13,7 @@
         public string Couleur { get; set;}
         public bool FullOption { get; set; }
         public string Agence { get; set; }
+        public byte AgeMinConducteur { get; set; }
         public double Prix { get; set; }
     }
 }
