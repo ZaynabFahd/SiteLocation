@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using SiteLocation.Models.DTO;
+using SiteLocation.Repository.Interfaces;
 using SiteLocationVihecule.Data;
 using SiteLocationVihecule.Models.Domain;
 using SiteLocationVihecule.Models.DTO;
@@ -13,10 +14,10 @@ namespace SiteLocation.Controllers
     [ApiController]
     public class VehiculeController : ControllerBase
     {
-        private readonly ApplicationDbContext _dbContext;
-        public VehiculeController(ApplicationDbContext dbContext)
+        private readonly IVehiculeRepository _vehiculeRepository;
+        public VehiculeController(IVehiculeRepository vehiculeRepository)
         {
-               this._dbContext = dbContext;
+               this._vehiculeRepository = vehiculeRepository;
         }
 
         // On va créer une methode Post pour enregistrer les vehicules
@@ -39,14 +40,12 @@ namespace SiteLocation.Controllers
                 AgeMinConducteur = request.AgeMinConducteur,
                 Agence = request.Agence,
                 Prix = request.Prix
-
             };
-            await _dbContext.Vehicules.AddAsync(vehicule);
-            await _dbContext.SaveChangesAsync();
 
+            // Avec cette ligne le controlleur ne sais pas comment la methode crée le vehicule 
+            await _vehiculeRepository.CreateAsync(vehicule);          
 
             // On va mapper le Domain Model to Dto
-
             var reponse = new Vehicule
             {
 

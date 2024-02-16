@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using SiteLocation.Repository.Interfaces;
+using SiteLocation.Repository.Repositories;
 using SiteLocationVihecule.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,13 +13,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+///////////////////////////
+
 //J'ai injecté la DbContext de type ApplicationDbContext pour communiquer avec la base de données
 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+
+// J'ai injecté le service Repository ici pour pouvoir l'utiliser
+
+builder.Services.AddScoped<IVehiculeRepository,VehiculeRepository>();
+
 //////////////////////////
+
 
 var app = builder.Build();
 
