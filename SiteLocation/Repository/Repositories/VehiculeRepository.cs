@@ -21,7 +21,6 @@ namespace SiteLocation.Repository.Repositories
             await _dbcontext.SaveChangesAsync();
 
             return vehicule;
-
         }
     }
 }

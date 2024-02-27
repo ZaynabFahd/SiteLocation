@@ -40,6 +40,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// J'active ici le cors pour rendre mon api public pour pouvoir l'utiliser avec mon app angular
+app.UseCors(options =>
+{
+    options.AllowAnyHeader();
+    options.AllowAnyMethod();
+    options.AllowAnyOrigin();
+});
+
 app.UseAuthorization();
 
 app.MapControllers();
