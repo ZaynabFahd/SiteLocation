@@ -9,5 +9,8 @@ namespace SiteLocation.Repository.Interfaces
         //Methode qui crée le vehicule dans la base de données
 
         Task<Vehicule> CreateAsync(Vehicule vehicule);
+
+        // La methode GetAllAsync qui prend en parametre Vehicule du domain model
+        Task<IEnumerable<Vehicule>> GetAllAsync();
     }
 }

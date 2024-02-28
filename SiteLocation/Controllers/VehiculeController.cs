@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using SiteLocation.Models.DTO;
 using SiteLocation.Repository.Interfaces;
+using SiteLocation.Repository.Repositories;
 using SiteLocationVihecule.Data;
 using SiteLocationVihecule.Models.Domain;
 using SiteLocationVihecule.Models.DTO;
@@ -66,6 +67,36 @@ namespace SiteLocation.Controllers
             };
 
             return Ok();
+        }
+
+        // Création de la méthode GetAll pour afficher tout les véhicules crées
+        // Le chemin va etre  :https://localhost:7052/api/Vehicule
+        [HttpGet]
+        public async Task<IActionResult> GetAllVehicules()
+        {
+            var vehicules = await _vehiculeRepository.GetAllAsync();
+            // Mapper le domain Model to Dto
+            var reponse = new List<VehiculeDto>();
+            foreach (var vehicule in vehicules)
+            {
+                reponse.Add(new VehiculeDto
+                {
+                    Marque = vehicule.Marque,
+                    VehiculeId = vehicule.VehiculeId,
+                    AnneeConstruction = vehicule.AnneeConstruction,
+                    NomVehicule = vehicule.NomVehicule,
+                    Disponibilite = vehicule.Disponibilite,
+                    Carburant = vehicule.Carburant,
+                    TypeVehicule = vehicule.TypeVehicule,
+                    NombrePlace = vehicule.NombrePlace,
+                    Couleur = vehicule.Couleur,
+                    FullOption = vehicule.FullOption,
+                    AgeMinConducteur = vehicule.AgeMinConducteur,
+                    Agence = vehicule.Agence,
+                    Prix = vehicule.Prix
+                });            
+            }
+            return Ok(reponse);           
         }
     }
 }
