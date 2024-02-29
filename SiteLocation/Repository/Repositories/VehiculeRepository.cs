@@ -29,5 +29,10 @@ namespace SiteLocation.Repository.Repositories
         {
             return await _dbcontext.Vehicules.ToListAsync();
         }
+
+        public async Task<Vehicule?> GetById(int id)
+        {
+            return await _dbcontext.Vehicules.FirstOrDefaultAsync(x => x.VehiculeId == id);
+        }
     }
 }

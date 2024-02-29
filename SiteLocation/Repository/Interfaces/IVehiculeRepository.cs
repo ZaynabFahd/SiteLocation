@@ -12,5 +12,8 @@ namespace SiteLocation.Repository.Interfaces
 
         // La methode GetAllAsync qui prend en parametre Vehicule du domain model
         Task<IEnumerable<Vehicule>> GetAllAsync();
+
+        // La méthode GetById qui prend en paramettre l'Id ou elle retourne null avec le ?
+        Task<Vehicule?> GetById(int id);
     }
 }

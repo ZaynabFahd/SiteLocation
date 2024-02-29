@@ -18,12 +18,12 @@ namespace SiteLocation.Controllers
         private readonly IVehiculeRepository _vehiculeRepository;
         public VehiculeController(IVehiculeRepository vehiculeRepository)
         {
-               this._vehiculeRepository = vehiculeRepository;
+            this._vehiculeRepository = vehiculeRepository;
         }
 
         // On va créer une methode Post pour enregistrer les vehicules
         [HttpPost]
-        public async Task<IActionResult> CreateVehicule(CreateVehiculeDto request)
+        public async Task<IActionResult> CreateVehicule([FromBody] CreateVehiculeDto request)
         {
 
             // On va mapper le Dto to Domain Model
@@ -44,7 +44,7 @@ namespace SiteLocation.Controllers
             };
 
             // Avec cette ligne le controlleur ne sais pas comment la methode crée le vehicule 
-            await _vehiculeRepository.CreateAsync(vehicule);          
+            await _vehiculeRepository.CreateAsync(vehicule);
 
             // On va mapper le Domain Model to Dto
             var reponse = new Vehicule
@@ -65,7 +65,6 @@ namespace SiteLocation.Controllers
                 Prix = vehicule.Prix
 
             };
-
             return Ok();
         }
 
@@ -94,9 +93,39 @@ namespace SiteLocation.Controllers
                     AgeMinConducteur = vehicule.AgeMinConducteur,
                     Agence = vehicule.Agence,
                     Prix = vehicule.Prix
-                });            
+                });
             }
-            return Ok(reponse);           
+            return Ok(reponse);
+        }
+
+        // le chemin pour le GetById est : https://localhost:7052/api/Vehicule  {id}
+        [HttpGet]
+        [Route("{id : int}")]
+        public async Task<IActionResult> GetVehiculeById([FromRoute]int id)
+        {
+            var existVehicule = await VehiculeRepository.GetById(id);
+
+            if (existVehicule is null) 
+            { 
+                return NotFound();
+            }
+            var reponse = new VehiculeDto
+            {
+                VehiculeId = existVehicule.VehiculeId,
+                NomVehicule = existVehicule.NomVehicule,
+                Marque = existVehicule.Marque,
+                Disponibilite = existVehicule.Disponibilite,
+                Carburant = existVehicule.Carburant,
+                Couleur = existVehicule.Couleur,
+                AgeMinConducteur = existVehicule.AgeMinConducteur,
+                Agence = existVehicule.Agence,
+                AnneeConstruction = existVehicule.AnneeConstruction,
+                Prix = existVehicule.Prix,
+                NombrePlace = existVehicule.NombrePlace,
+                FullOption = existVehicule.FullOption,
+                TypeVehicule = existVehicule.TypeVehicule
+            };
+            return Ok(reponse);
         }
     }
 }
