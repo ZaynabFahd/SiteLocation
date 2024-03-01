@@ -100,10 +100,10 @@ namespace SiteLocation.Controllers
 
         // le chemin pour le GetById est : https://localhost:7052/api/Vehicule  {id}
         [HttpGet]
-        [Route("{id : int}")]
-        public async Task<IActionResult> GetVehiculeById([FromRoute]int id)
+        [Route("{vehiculeId:int}")]
+        public async Task<IActionResult> GetVehiculeById([FromRoute]int vehiculeId)
         {
-            var existVehicule = await VehiculeRepository.GetById(id);
+            var existVehicule = await _vehiculeRepository.GetById(vehiculeId);
 
             if (existVehicule is null) 
             { 
