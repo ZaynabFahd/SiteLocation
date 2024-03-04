@@ -15,5 +15,8 @@ namespace SiteLocation.Repository.Interfaces
 
         // La méthode GetById qui prend en paramettre l'Id ou elle retourne null avec le ?
         Task<Vehicule?> GetById(int id);
+
+        // La méthode qui prend en paramétre le model Vehicule
+        Task<Vehicule?> UpdateAsync(Vehicule vehicule);
     }
 }

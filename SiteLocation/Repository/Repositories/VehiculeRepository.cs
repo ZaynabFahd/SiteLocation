@@ -34,5 +34,17 @@ namespace SiteLocation.Repository.Repositories
         {
             return await _dbcontext.Vehicules.FirstOrDefaultAsync(x => x.VehiculeId == id);
         }
+
+        public async Task<Vehicule?> UpdateAsync(Vehicule vehicule)
+        {
+            var existVehicule = await _dbcontext.Vehicules.FirstOrDefaultAsync(x => x.VehiculeId == vehicule.VehiculeId);
+            if(existVehicule != null)
+            {
+                _dbcontext.Entry(existVehicule).CurrentValues.SetValues(vehicule);
+                await _dbcontext.SaveChangesAsync();
+                return vehicule;
+            }
+            return null;
+        }
     }
 }
