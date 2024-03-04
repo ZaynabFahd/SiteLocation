@@ -18,5 +18,7 @@ namespace SiteLocation.Repository.Interfaces
 
         // La méthode qui prend en paramétre le model Vehicule
         Task<Vehicule?> UpdateAsync(Vehicule vehicule);
+
+        Task<Vehicule?> DeleteAsync(int id);
     }
 }

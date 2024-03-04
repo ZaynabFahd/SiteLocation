@@ -23,6 +23,11 @@ namespace SiteLocation.Repository.Repositories
             return vehicule;
         }
 
+        public Task<Vehicule?> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // J'implemente l'interface en utilisant la dbcontext et la collection de vehicules
         // pour afficher la liste des véhicules
         public async Task<IEnumerable<Vehicule>> GetAllAsync()
@@ -45,6 +50,18 @@ namespace SiteLocation.Repository.Repositories
                 return vehicule;
             }
             return null;
+        }
+        public async Task<Vehicule?> DeleteAsync(int id)
+        {
+            var existVehicule = await _dbcontext.Vehicules.FirstOrDefaultAsync(x => x.VehiculeId == id);
+            if (existVehicule is null)
+            {
+                return null;
+            }
+                _dbcontext.Vehicules.Remove(existVehicule);
+                await _dbcontext.SaveChangesAsync();
+                return existVehicule;
+                       
         }
     }
 }

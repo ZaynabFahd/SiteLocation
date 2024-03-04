@@ -174,5 +174,11 @@ namespace SiteLocation.Controllers
             };
             return Ok(reponse);
         }
+        [HttpDelete]
+        [Route("{vehiculeId:int}")]
+        public async Task<IActionResult> DeleteVehicule([FromRoute] int vehiculeId)
+        {
+
+        }
     }
 }
