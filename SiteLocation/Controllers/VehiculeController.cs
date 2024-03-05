@@ -22,12 +22,12 @@ namespace SiteLocation.Controllers
             this._vehiculeRepository = vehiculeRepository;
         }
 
-        // On va créer une methode Post pour enregistrer les vehicules
+        // créer une methode Post pour enregistrer les vehicules
         [HttpPost]
         public async Task<IActionResult> CreateVehicule([FromBody] CreateVehiculeDto request)
         {
 
-            // On va mapper le Dto to Domain Model
+            // mapper le Dto to Domain Model
             var vehicule = new Vehicule
             {
                 Marque = request.Marque,
@@ -47,7 +47,7 @@ namespace SiteLocation.Controllers
             // Avec cette ligne le controlleur ne sais pas comment la methode crée le vehicule 
             await _vehiculeRepository.CreateAsync(vehicule);
 
-            // On va mapper le Domain Model to Dto
+            // mapper le Domain Model to Dto
             var reponse = new Vehicule
             {
 
