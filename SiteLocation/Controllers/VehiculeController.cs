@@ -178,6 +178,29 @@ namespace SiteLocation.Controllers
         [Route("{vehiculeId:int}")]
         public async Task<IActionResult> DeleteVehicule([FromRoute] int vehiculeId)
         {
+            var vehicule = await _vehiculeRepository.DeleteAsync(vehiculeId);
+            if(vehicule is null)
+            {
+                return BadRequest();
+            }
+            // Convertir Domain te Model
+            var reponse = new Vehicule
+            {
+                VehiculeId = vehicule.VehiculeId,
+                Marque = vehicule.Marque,
+                AnneeConstruction = vehicule.AnneeConstruction,
+                NomVehicule = vehicule.NomVehicule,
+                Disponibilite = vehicule.Disponibilite,
+                Carburant = vehicule.Carburant,
+                TypeVehicule = vehicule.TypeVehicule,
+                NombrePlace = vehicule.NombrePlace,
+                Couleur = vehicule.Couleur,
+                FullOption = vehicule.FullOption,
+                AgeMinConducteur = vehicule.AgeMinConducteur,
+                Agence = vehicule.Agence,
+                Prix = vehicule.Prix
+            };
+            return Ok(reponse);
 
         }
     }

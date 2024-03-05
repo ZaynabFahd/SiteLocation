@@ -23,10 +23,6 @@ namespace SiteLocation.Repository.Repositories
             return vehicule;
         }
 
-        public Task<Vehicule?> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         // J'implemente l'interface en utilisant la dbcontext et la collection de vehicules
         // pour afficher la liste des véhicules
