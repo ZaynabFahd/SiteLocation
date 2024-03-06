@@ -25,6 +25,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 // J'ai injecté le service Repository ici pour pouvoir l'utiliser
 
 builder.Services.AddScoped<IVehiculeRepository,VehiculeRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
 
 //////////////////////////
 
