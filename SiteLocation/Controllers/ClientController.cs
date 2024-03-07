@@ -35,7 +35,8 @@ namespace SiteLocation.Controllers
                 MotPass = request.MotPass,
                 Tel = request.Tel,
             };
-            await clientRepository.CreateAsync(client);
+            // await retourne l'objet client créé que je stoque dans une variable (client)
+            client = await clientRepository.CreateAsync(client);
 
             var reponse = new Client
             {

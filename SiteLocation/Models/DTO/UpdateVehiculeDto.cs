@@ -14,5 +14,6 @@
         public string Agence { get; set; }
         public byte AgeMinConducteur { get; set; }
         public double Prix { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

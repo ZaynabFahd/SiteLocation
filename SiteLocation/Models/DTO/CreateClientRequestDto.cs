@@ -9,6 +9,6 @@
         public string Adresse { get; set; }
         public string PermisConduire { get; set; }
         public DateTime DateNaissance { get; set; }
-        public byte Tel { get; set; }
+        public string Tel { get; set; }
     }
 }

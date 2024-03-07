@@ -33,19 +33,19 @@ namespace SiteLocation.Controllers
                 Agence = request.Agence,
                 Tel = request.Tel,
             };
-            await managerRepository.CreateAsync(manager);
-            var reponse = new Agence
+            manager = await managerRepository.CreateAsync(manager);
+            var reponse = new Manager
             {
                 ManagerId = manager.ManagerId,
-                Nom = request.Nom,
-                Prenom = request.Prenom,
-                DateNaissance = request.DateNaissance,
-                Adresse = request.Adresse,
-                Email = request.Email,
-                Agence = request.Agence,
-                Tel = request.Tel,
-
+                Nom = manager.Nom,
+                Prenom = manager.Prenom,
+                DateNaissance = manager.DateNaissance,
+                Adresse = manager.Adresse,
+                Email = manager.Email,
+                Agence = manager.Agence,
+                Tel = manager.Tel,
             };
+            return Ok(reponse);
         }
     }
 }

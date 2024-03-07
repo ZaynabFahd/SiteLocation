@@ -24,7 +24,7 @@ namespace SiteLocation.Controllers
 
         // créer une methode Post pour enregistrer les vehicules
         [HttpPost]
-        public async Task<IActionResult> CreateVehicule([FromBody] CreateVehiculeDto request)
+        public async Task<IActionResult> CreateVehicule([FromBody] CreateVehiculeRequestDto request)
         {
 
             // mapper le Dto to Domain Model
@@ -41,7 +41,8 @@ namespace SiteLocation.Controllers
                 FullOption = request.FullOption,
                 AgeMinConducteur = request.AgeMinConducteur,
                 Agence = request.Agence,
-                Prix = request.Prix
+                Prix = request.Prix,
+                ImageUrl = request.ImageUrl,
             };
 
             // Avec cette ligne le controlleur ne sais pas comment la methode crée le vehicule 
@@ -63,10 +64,11 @@ namespace SiteLocation.Controllers
                 FullOption = vehicule.FullOption,
                 AgeMinConducteur = vehicule.AgeMinConducteur,
                 Agence = vehicule.Agence,
-                Prix = vehicule.Prix
+                Prix = vehicule.Prix,
+                ImageUrl = vehicule.ImageUrl
 
             };
-            return Ok();
+            return Ok(reponse);
         }
 
         // Création de la méthode GetAll pour afficher tout les véhicules crées
@@ -93,7 +95,9 @@ namespace SiteLocation.Controllers
                     FullOption = vehicule.FullOption,
                     AgeMinConducteur = vehicule.AgeMinConducteur,
                     Agence = vehicule.Agence,
-                    Prix = vehicule.Prix
+                    Prix = vehicule.Prix,
+                    ImageUrl = vehicule.ImageUrl
+                    
                 });
             }
             return Ok(reponse);
@@ -124,7 +128,8 @@ namespace SiteLocation.Controllers
                 Prix = existVehicule.Prix,
                 NombrePlace = existVehicule.NombrePlace,
                 FullOption = existVehicule.FullOption,
-                TypeVehicule = existVehicule.TypeVehicule
+                TypeVehicule = existVehicule.TypeVehicule,
+                ImageUrl = existVehicule.ImageUrl
             };
             return Ok(reponse);
         }
@@ -148,7 +153,8 @@ namespace SiteLocation.Controllers
                 FullOption = request.FullOption,
                 AgeMinConducteur = request.AgeMinConducteur,
                 Agence = request.Agence,
-                Prix = request.Prix
+                Prix = request.Prix,
+                ImageUrl = request.ImageUrl
             };
             vehicule = await _vehiculeRepository.UpdateAsync(vehicule);
             if(vehicule == null)
@@ -170,7 +176,8 @@ namespace SiteLocation.Controllers
                 FullOption = vehicule.FullOption,
                 AgeMinConducteur = vehicule.AgeMinConducteur,
                 Agence = vehicule.Agence,
-                Prix = vehicule.Prix
+                Prix = vehicule.Prix,
+                ImageUrl = vehicule.ImageUrl
             };
             return Ok(reponse);
         }
@@ -198,7 +205,8 @@ namespace SiteLocation.Controllers
                 FullOption = vehicule.FullOption,
                 AgeMinConducteur = vehicule.AgeMinConducteur,
                 Agence = vehicule.Agence,
-                Prix = vehicule.Prix
+                Prix = vehicule.Prix,
+                ImageUrl = vehicule.ImageUrl
             };
             return Ok(reponse);
 

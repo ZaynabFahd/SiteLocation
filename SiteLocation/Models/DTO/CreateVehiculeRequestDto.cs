@@ -1,6 +1,6 @@
 ﻿namespace SiteLocationVihecule.Models.DTO
 {
-    public class CreateVehiculeDto
+    public class CreateVehiculeRequestDto
     {
         public string Marque { get; set; }
         public string NomVehicule { get; set; }
@@ -14,5 +14,6 @@
         public string Agence { get; set; }
         public byte AgeMinConducteur { get; set; }
         public double Prix { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

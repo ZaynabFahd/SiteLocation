@@ -1,7 +1,8 @@
 ﻿namespace SiteLocation.Models.DTO
 {
-    public class CreateManagerRequestDto
+    public class ManagerDto
     {
+        public int ManagerId { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Email { get; set; }

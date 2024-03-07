@@ -9,6 +9,6 @@
         public string Agence { get; set; }
         public string Adresse { get; set; } 
         public DateTime DateNaissance { get; set; }
-        public byte Tel { get; set; }
+        public string Tel { get; set; }
     }
 }

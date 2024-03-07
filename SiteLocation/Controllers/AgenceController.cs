@@ -12,7 +12,7 @@ namespace SiteLocation.Controllers
     public class AgenceController : ControllerBase
     {
         private readonly IAgenceRepository agenceRepository;
-        public AgenceController(IAgenceRepository cagenceRepository)
+        public AgenceController(IAgenceRepository agenceRepository)
         {
             this.agenceRepository = agenceRepository;
         }

@@ -36,7 +36,7 @@ namespace SiteLocation.Controllers
                 Vehicule = request.Vehicule,
             };
 
-            await locationRepository.CreateAsync(location);
+            location = await locationRepository.CreateAsync(location);
             var reponse = new Location
             {
                 LocationId = location.LocationId,
@@ -50,7 +50,7 @@ namespace SiteLocation.Controllers
                 Assurance = location.Assurance,
                 Vehicule = location.Vehicule,
             };
-            return Ok();
+            return Ok(reponse);
         }
     }
 }
