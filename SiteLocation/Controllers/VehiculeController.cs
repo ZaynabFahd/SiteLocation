@@ -141,7 +141,7 @@ namespace SiteLocation.Controllers
             // Dto to Domain medel
             var vehicule = new Vehicule
             {
-                VehiculeId = vehiculeId,
+               
                 Marque = request.Marque,
                 AnneeConstruction = request.AnneeConstruction,
                 NomVehicule = request.NomVehicule,
