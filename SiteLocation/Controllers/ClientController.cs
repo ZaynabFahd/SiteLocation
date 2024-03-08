@@ -67,7 +67,7 @@ namespace SiteLocation.Controllers
                     DateNaissance = client.DateNaissance,
                     Adresse = client.Adresse,
                     Email = client.Email,
-                    PermisConduire= client.PermittedConduire,
+                    PermisConduire= client.PermisConduire,
                     MotPass= client.MotPass,
                     Tel= client.Tel,                  
                 });
@@ -103,7 +103,7 @@ namespace SiteLocation.Controllers
         public async Task<IActionResult> UpdateClient([FromRoute] int clientId, UpdateClientDto request)
         {
             // Dto to Domain medel
-            var agence = new Client
+            var client = new Client
             {
                 Nom = request.Nom,
                 Adresse = request.Adresse,
@@ -129,7 +129,7 @@ namespace SiteLocation.Controllers
                 DateNaissance = client.DateNaissance,
                 Adresse = client.Adresse,
                 Email = client.Email,
-                PermisConduire = client.PermittedConduire,
+                PermisConduire = client.PermisConduire,
                 MotPass = client.MotPass,
                 Tel = client.Tel,
 
@@ -137,5 +137,32 @@ namespace SiteLocation.Controllers
             return Ok(reponse);
         }
 
+        [HttpDelete]
+        [Route("{clientId:int}")]
+        public async Task<IActionResult> DeleteClient([FromRoute] int clientId)
+        {
+            var client = await clientRepository.DeleteAsync(clientId);
+            if (client is null)
+            {
+                return BadRequest();
+            }
+            // Convertir Domain te Model
+            var reponse = new Client
+            {
+                ClientId = client.ClientId,
+                Prenom  = client.Prenom,
+                DateNaissance = client.DateNaissance,
+                Email = client.Email,
+                MotPass = client.MotPass,
+                Tel = client.Tel,
+                PermisConduire = client.PermisConduire,
+                Nom = client.Nom,
+                Adresse = client.Adresse
+                
+            };
+            return Ok(reponse);
+
+        }
     }
+
 }
