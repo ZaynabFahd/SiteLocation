@@ -52,6 +52,7 @@ namespace SiteLocation.Controllers
             {
                 reponse.Add(new AgenceDto
                 {
+                    AgenceId=agence.AgenceId,
                     Nom = agence.Nom,
                     Adresse = agence.Adresse,
                     ManagerResponsable = agence.ManagerResponsable

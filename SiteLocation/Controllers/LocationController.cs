@@ -63,6 +63,7 @@ namespace SiteLocation.Controllers
             {
                 reponse.Add(new LocationDto
                 {
+                    LocationId = location.LocationId,
                     DateLocation= location.DateLocation,
                     DateRetour = location.DateRetour,
                     Client = location.Client,

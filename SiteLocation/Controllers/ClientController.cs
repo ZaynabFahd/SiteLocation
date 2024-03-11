@@ -26,6 +26,7 @@ namespace SiteLocation.Controllers
             // Mapper Dto to Domain;
             var client = new Client
             {
+                
                 Nom = request.Nom,
                 Prenom = request.Prenom,
                 DateNaissance = request.DateNaissance,
@@ -61,7 +62,8 @@ namespace SiteLocation.Controllers
             foreach (var client in clients)
             {
                 reponse.Add(new ClientDto
-                {                   
+                { 
+                    ClientId = client.ClientId,
                     Nom = client.Nom,
                     Prenom = client.Prenom,
                     DateNaissance = client.DateNaissance,
@@ -124,6 +126,7 @@ namespace SiteLocation.Controllers
             // Convertie le Domain medel to Dto
             var reponse = new ClientDto
             {
+                ClientId = client.ClientId,
                 Nom = client.Nom,
                 Prenom = client.Prenom,
                 DateNaissance = client.DateNaissance,

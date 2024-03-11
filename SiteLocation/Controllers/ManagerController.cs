@@ -58,6 +58,7 @@ namespace SiteLocation.Controllers
             {
                 reponse.Add(new ManagerDto
                 {
+                    ManagerId = manager.ManagerId,
                     Nom = manager.Nom,
                     Prenom = manager.Prenom,
                     DateNaissance = manager.DateNaissance,
